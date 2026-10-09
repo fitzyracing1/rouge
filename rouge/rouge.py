@@ -6,6 +6,19 @@ import io
 import os
 
 
+def _split_sentences(text):
+    """Split `text` on periods into whitespace-normalized sentences.
+
+    Segments made only of whitespace (for example the " " after the last period in "cat. ")
+    are dropped. rouge 1.0.1 kept them as "" sentences, which became a "" token shared by
+    unrelated texts (upstream #77). If the whole text is whitespace and periods, it is
+    returned as in 1.0.1, so such inputs are still scored instead of raising
+    "Hypothesis is empty.".
+    """
+    sentences = [" ".join(_.split()) for _ in text.split(".") if len(_) > 0]
+    return [_ for _ in sentences if _] or sentences
+
+
 class FilesRouge:
     def __init__(self, *args, **kwargs):
         """See the `Rouge` class for args
@@ -112,8 +125,8 @@ class Rouge:
         for hyp, ref in zip(hyps, refs):
             sen_score = {}
 
-            hyp = [" ".join(_.split()) for _ in hyp.split(".") if len(_) > 0]
-            ref = [" ".join(_.split()) for _ in ref.split(".") if len(_) > 0]
+            hyp = _split_sentences(hyp)
+            ref = _split_sentences(ref)
 
             for m in self.metrics:
                 fn = Rouge.AVAILABLE_METRICS[m]
@@ -140,8 +153,8 @@ class Rouge:
 
         count = 0
         for (hyp, ref) in zip(hyps, refs):
-            hyp = [" ".join(_.split()) for _ in hyp.split(".") if len(_) > 0]
-            ref = [" ".join(_.split()) for _ in ref.split(".") if len(_) > 0]
+            hyp = _split_sentences(hyp)
+            ref = _split_sentences(ref)
 
             for m in self.metrics:
                 fn = Rouge.AVAILABLE_METRICS[m]

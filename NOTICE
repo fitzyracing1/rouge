@@ -1,0 +1,18 @@
+rouge: Full Python ROUGE Score Implementation
+Copyright pltrdy and the rouge contributors.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+Original project: https://github.com/pltrdy/rouge
+
+fitzyracing-rouge (part of 360 Bench, https://github.com/fitzyracing1/360-bench)
+Modifications copyright 2026 Joshua Almeida, also under the Apache License, Version 2.0.
+
+This distribution is rouge 1.0.1 with these changes:
+- rouge/rouge.py: whitespace-only segments between periods are dropped when splitting texts
+  into sentences, instead of becoming an empty "" token (texts made only of whitespace and
+  periods are handled exactly as in 1.0.1).
+- rouge/rouge_score.py: upstream commit 4b57032 (PR #69 by Lppy, merged on upstream master
+  but never released) replaces the recursive LCS reconstruction with a loop.
+- rouge/__init__.py: __version__ = "1.0.2".
+- Packaging: pyproject.toml replaces setup.py; distribution name fitzyracing-rouge;
+  import name unchanged.
+- Tests: tests/test_fork_fixes.py; README, CHANGELOG and this NOTICE.

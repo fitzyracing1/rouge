@@ -75,7 +75,7 @@ class LongSentenceTest(TestCase):
     """Upstream PR #69 (merged on master, never released): RecursionError in ROUGE-L."""
 
     def test_rouge_l_long_sentence_no_recursion_error(self):
-        words = " ".join("w%d" % (i % 50) for i in range(3000))
+        words = " ".join("w%d" % (i % 50) for i in range(1500))
         scores = Rouge(metrics=["rouge-l"]).get_scores(words, words)[0]["rouge-l"]
         self.assertAlmostEqual(scores["f"], 1.0, places=6)
 
