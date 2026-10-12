@@ -268,3 +268,8 @@ scores = files_rouge.get_scores(hyp_path, ref_path)
 # or
 scores = files_rouge.get_scores(hyp_path, ref_path, avg=True)
 ```
+
+## Documentation
+
+- In-repo docs: [docs/](docs/index.md)
+- Wiki: [https://github.com/fitzyracing1/rouge/wiki](https://github.com/fitzyracing1/rouge/wiki)
