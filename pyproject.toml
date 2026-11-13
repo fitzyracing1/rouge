@@ -30,6 +30,7 @@ Issues = "https://github.com/fitzyracing1/rouge/issues"
 Changelog = "https://github.com/fitzyracing1/rouge/blob/master/CHANGELOG.md"
 Upstream = "https://github.com/pltrdy/rouge"
 "360 Bench" = "https://github.com/fitzyracing1/360-bench"
+Funding = "https://github.com/sponsors/fitzyracing1"
 
 [tool.setuptools]
 # Same packages as upstream rouge 1.0.1 (including its top-level `bin` package for the CLI).
